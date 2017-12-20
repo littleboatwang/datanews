@@ -30,7 +30,7 @@
         <p>1-11月，全国快递服务企业业务量累计完成358.6亿件，同比增长28.6%；业务收入累计完成4437.4亿元，同比增长25.2%。</p>
         <br>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-   <div id="schedule-provinces" class="chart" style="height:400px"></div>
+   <div id="schedule-provinces" class="chart" style="height:400px;align-text:center;"></div>
 	<script src="echarts.min.js"></script>
 	<script src="assets/maps/china.js"></script>
             <script type="text/javascript">
@@ -55,7 +55,7 @@ var optionScheduleProvinces = {
         color: ['#006edd', '#e0ffff']
     },
     series: [
-        {
+        {align
             name: '全国各省快递运量',
             type: 'map',
             map: 'china',
