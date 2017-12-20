@@ -30,70 +30,35 @@
         <p>1-11月，全国快递服务企业业务量累计完成358.6亿件，同比增长28.6%；业务收入累计完成4437.4亿元，同比增长25.2%。</p>
         <br>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="china" class="chart" style="height:400px;"></div>
-    <script src="js/echarts.js"></script>
-    <script>
-        // 路径配置
-        require.config({
-            paths: {
-                echarts: 'http://echarts.baidu.com/build/dist'
-            }
-        });
-        // 使用
-        require(['echarts','echarts/chart/map'],function (ch) {
-            // 基于准备好的dom，初始化echarts图表
-            var myChart = ch.init(document.getElementById('china'));  
-            option = {
-    title : {
+   <div id="schedule-provinces" style="height:400px"></div>
+	<script src="echarts.min.js"></script>
+	<script src="assets/maps/china.js"></script>
+            <script type="text/javascript">
+    var chartScheduleProvinces = echarts.init(document.getElementById('schedule-provinces'));
+
+var optionScheduleProvinces = {
+    title: {
         text: '2017年全国各省快递业务量（单位：万件）',
         subtext: '不包括港澳台',
-        x:'center'
+        top: 'top',
+        left: 'center'
     },
-    tooltip : {
-        trigger: 'item'
+        tooltip: {
+        formatter: '{b}: {c}'
     },
-    legend: {
-        orient: 'vertical',
-        x:'left',
-        data:['全国各省快递运量']
-    },
-    dataRange: {
+    visualMap: {
+        type: 'continuous',
         min: 0,
         max: 920000,
-        x: 'left',
-        y: 'bottom',
-        text:['高','低'],           // 文本，默认为数值文本
-        calculable : true
+        calculable: true,
+        realtime: false,
+        color: ['#006edd', '#e0ffff']
     },
-    toolbox: {
-        show: true,
-        orient : 'vertical',
-        x: 'right',
-        y: 'center',
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
-    roamController: {
-        show: true,
-        x: 'right',
-        mapTypeControl: {
-            'china': true
-        }
-    },
-    series : [
+    series: [
         {
-            name: '2017年各省快递业务量',
+            name: '全国各省快递运量',
             type: 'map',
-            mapType: 'china',
-            roam: false,
-            itemStyle:{
-                normal:{label:{show:true}},
-                emphasis:{label:{show:true}}
-            },
+            map: 'china',
             data:[
                 {name: '北京',value:'204429.5'},
                 {name: '天津',value:'45843.3'},
@@ -126,13 +91,13 @@
                 {name: '四川',value: '99165.9'},
                 {name: '宁夏',value: '3351.9'},
                 {name: '海南',value: '5331.1'},
-            ]
+                ]
         }
     ]
 };
-     // 为echarts对象加载数据 
-            myChart.setOption(option); 
-        });
+
+chartScheduleProvinces.setOption(optionScheduleProvinces);
+
     </script>
     <br>
     <img src="assets/images/词频图.png" alt="2017年全国业务量地区词频图" class="index-compare">
